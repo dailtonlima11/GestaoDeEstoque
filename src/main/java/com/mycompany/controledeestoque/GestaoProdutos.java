@@ -219,7 +219,7 @@ public class GestaoProdutos extends javax.swing.JPanel {
       int id = Integer.parseInt(campoID.getText());
 
             try {
-            Connection conn = ConexaoBD.conectar(); // Sua classe de conexão
+            Connection conn = ConexaoBD.conectar();
             String sql = "DELETE FROM Produtos WHERE Id_Produto = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -228,7 +228,7 @@ public class GestaoProdutos extends javax.swing.JPanel {
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
                 JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
-                // opcional: limparCampos();
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum produto encontrado com esse ID.");
             }
@@ -261,7 +261,7 @@ public class GestaoProdutos extends javax.swing.JPanel {
                 
                 try {
                     preco = Float.parseFloat(campoPreco.getText());
-                    Connection conn = ConexaoBD.conectar(); // Sua classe de conexão
+                    Connection conn = ConexaoBD.conectar();
                     String sql = "INSERT INTO Produtos (Nome_Produto, Categoria, Preco) VALUES (?, ?, ?)";
                     PreparedStatement stmt = conn.prepareStatement(sql);
                     stmt.setString(1, produto);
@@ -286,7 +286,7 @@ public class GestaoProdutos extends javax.swing.JPanel {
             
             try {
             int id = Integer.parseInt(campoID.getText());
-            Connection conn = ConexaoBD.conectar(); // Sua classe de conexão
+            Connection conn = ConexaoBD.conectar();
             
             String verificar = "SELECT Id_Produto FROM Produtos WHERE Id_Produto = ?";
             PreparedStatement stmtVerifica = conn.prepareStatement(verificar);
@@ -352,7 +352,7 @@ public void carregarProdutosNaTabela() {
          ResultSet rs = stmt.executeQuery(sql)) {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable4.getModel();
-        modelo.setRowCount(0); // limpa a tabela
+        modelo.setRowCount(0);
 
         while (rs.next()) {
             int id = rs.getInt("Id_Produto");

@@ -259,8 +259,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         } else{
             JOptionPane.showMessageDialog(null, "Você não tem permissão para acessar essa página.", "Acesso não permitido", JOptionPane.ERROR_MESSAGE);
         }
-        
-            // TODO add your handling code here:
+       
     }//GEN-LAST:event_MenuGerarRelatoriosActionPerformed
 
     private void MenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuSairMouseClicked
@@ -275,8 +274,8 @@ public class FramePrincipal extends javax.swing.JFrame {
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null, // ícone padrão
-                    new Object[] {"Sim", "Não"}, // opções personalizadas
-                    "Não" // opção padrão
+                    new Object[] {"Sim", "Não"}, 
+                    "Não"
                 );
                 
         if (opcao == JOptionPane.YES_OPTION) {
@@ -291,9 +290,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                     
                 }
         }
-        
-        
-               // TODO add your handling code here:
+
     }//GEN-LAST:event_MenuSairMouseClicked
     
     private void MenuCadastroFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastroFuncionariosActionPerformed
@@ -303,12 +300,11 @@ public class FramePrincipal extends javax.swing.JFrame {
         } else{
             JOptionPane.showMessageDialog(null, "Você não tem permissão para acessar essa página.", "Acesso não permitido", JOptionPane.ERROR_MESSAGE);
         }
-        
-            // TODO add your handling code here:
+
     }//GEN-LAST:event_MenuCadastroFuncionariosActionPerformed
 
     private void apertarEnter(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apertarEnter
-        Logar();        // TODO add your handling code here:
+        Logar();
     }//GEN-LAST:event_apertarEnter
 
     private void menuConsultaEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaEstoqueActionPerformed
@@ -370,10 +366,10 @@ public class FramePrincipal extends javax.swing.JFrame {
                 } else{
                     
             try {
-            // Conectando ao banco
+        
             Connection conn = ConexaoBD.conectar();
 
-            // Query para buscar usuário
+            
             String sql = "SELECT * FROM Funcionarios WHERE Login = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, usuario);
@@ -383,10 +379,10 @@ public class FramePrincipal extends javax.swing.JFrame {
             if (rs.next()) {
             String hashArmazenado = rs.getString("Senha");
             if (BCrypt.checkpw(senha, hashArmazenado)) {
-                // Login bem-sucedido
+                
                 JOptionPane.showMessageDialog(null, "Usuário e senha OK!", "Acesso Permitido", JOptionPane.INFORMATION_MESSAGE);
                 
-                cargoUsuarioLogado = rs.getString("Cargo");  // <- AQUI!!!
+                cargoUsuarioLogado = rs.getString("Cargo");
                 System.out.println("Cargo do usuário logado: " + cargoUsuarioLogado);
 
                 switch (cargoUsuarioLogado){
@@ -410,7 +406,7 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
                 
             } else {
-                // Falha no login
+                
                 JOptionPane.showMessageDialog(null, "Usuário ou senha incorretos!", "Acesso não permitido", JOptionPane.ERROR_MESSAGE);
             }
 

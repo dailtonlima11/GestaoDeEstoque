@@ -245,7 +245,7 @@ public class GestaoFuncionarios extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos.", "FALHA NO CADASTRO", JOptionPane.WARNING_MESSAGE);
             } else{
                 try {
-            Connection conn = ConexaoBD.conectar(); // Sua classe de conexão
+            Connection conn = ConexaoBD.conectar();
             String sql = "INSERT INTO Funcionarios (Nome_Funcionarios, Cargo, Login, Senha) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, nome);
@@ -257,7 +257,7 @@ public class GestaoFuncionarios extends javax.swing.JPanel {
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
                 JOptionPane.showMessageDialog(null, "Funcionário cadastrado com sucesso!");
-                // opcional: limparCampos();
+              
             } else {
                 JOptionPane.showMessageDialog(null, "Erro ao cadastrar funcionário.");
             }
@@ -272,7 +272,7 @@ public class GestaoFuncionarios extends javax.swing.JPanel {
         } else{
             try {
             int id = Integer.parseInt(editarID.getText());
-            Connection conn = ConexaoBD.conectar(); // Sua classe de conexão
+            Connection conn = ConexaoBD.conectar();
             
             String verificar = "SELECT Id_Funcionarios FROM funcionarios WHERE Id_Funcionarios = ?";
             PreparedStatement stmtVerifica = conn.prepareStatement(verificar);
@@ -334,7 +334,7 @@ public class GestaoFuncionarios extends javax.swing.JPanel {
        int id = Integer.parseInt(editarID.getText());
 
             try {
-            Connection conn = ConexaoBD.conectar(); // Sua classe de conexão
+            Connection conn = ConexaoBD.conectar(); 
             String sql = "DELETE FROM funcionarios WHERE Id_Funcionarios = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -343,7 +343,7 @@ public class GestaoFuncionarios extends javax.swing.JPanel {
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {
                 JOptionPane.showMessageDialog(null, "Funcionário excluído com sucesso!");
-                // opcional: limparCampos();
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Nenhum funcionário encontrado com esse ID.");
             }
@@ -366,7 +366,7 @@ public class GestaoFuncionarios extends javax.swing.JPanel {
          ResultSet rs = stmt.executeQuery(sql)) {
 
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        modelo.setRowCount(0); // limpa a tabela
+        modelo.setRowCount(0); 
 
         while (rs.next()) {
             int id = rs.getInt("Id_Funcionarios");

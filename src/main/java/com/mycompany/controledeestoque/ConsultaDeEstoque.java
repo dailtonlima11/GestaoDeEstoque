@@ -136,7 +136,7 @@ public class ConsultaDeEstoque extends javax.swing.JPanel {
         String termo = jTextField1.getText().trim();
 
     if (termo.isEmpty()) {
-        carregarProdutosNaTabela(); // mostra todos se campo vazio
+        carregarProdutosNaTabela(); 
         return;
     }
 
@@ -149,7 +149,7 @@ public class ConsultaDeEstoque extends javax.swing.JPanel {
          ResultSet rs = stmt.executeQuery(sql)) {
 
         DefaultTableModel modelo = (DefaultTableModel) tabelaProdutos.getModel();
-        modelo.setRowCount(0); // limpa a tabela
+        modelo.setRowCount(0);
 
         while (rs.next()) {
             int id = rs.getInt("ID_Produto");
@@ -177,7 +177,7 @@ public void carregarProdutosNaTabela() {
          ResultSet rs = stmt.executeQuery(sql)) {
 
         DefaultTableModel modelo = (DefaultTableModel) tabelaProdutos.getModel();
-        modelo.setRowCount(0); // limpa a tabela
+        modelo.setRowCount(0); 
 
         while (rs.next()) {
         int id = rs.getInt("ID_Produto");
@@ -195,7 +195,7 @@ public void carregarProdutosNaTabela() {
     }
 }
 
-// Remove acentos e converte para minúsculas
+
 public static String removerAcentos(String texto) {
     String normalizado = Normalizer.normalize(texto, Normalizer.Form.NFD);
     Pattern padrao = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");

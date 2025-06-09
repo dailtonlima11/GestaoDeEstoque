@@ -163,7 +163,7 @@ public class Relatorios extends javax.swing.JPanel {
             return;
         }
 
-        // Converte datas
+        
         SimpleDateFormat formatoEntrada = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat formatoSQL = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat formatoArquivo = new SimpleDateFormat("dd-MM-yyyy");
@@ -174,11 +174,11 @@ public class Relatorios extends javax.swing.JPanel {
         String dataInicio = formatoSQL.format(dataInicioUtil);
         String dataFim = formatoSQL.format(dataFimUtil);
 
-        // Caminho para pasta Documents do usuário
+        
         String userHome = System.getProperty("user.home");
         String documentsPath = userHome + File.separator + "Documents";
 
-        // Nome do arquivo
+        
         String nomeArquivo = "relatorio_" + formatoArquivo.format(dataInicioUtil)
                            + "_ate_" + formatoArquivo.format(dataFimUtil) + ".pdf";
         File arquivoPDF = new File(documentsPath, nomeArquivo);
@@ -219,24 +219,24 @@ public class Relatorios extends javax.swing.JPanel {
 
             ResultSet rs = stmt.executeQuery();
 
-            // Gerador de PDF
+            
             com.lowagie.text.Document document = new com.lowagie.text.Document();
             com.lowagie.text.pdf.PdfWriter.getInstance(document, new java.io.FileOutputStream(arquivoPDF));
             document.open();
 
-            // Título
+            
             com.lowagie.text.Font tituloFont = new com.lowagie.text.Font(com.lowagie.text.Font.HELVETICA, 16, com.lowagie.text.Font.BOLD);
             document.add(new com.lowagie.text.Paragraph("Relatório de movimentações", tituloFont));
             document.add(new com.lowagie.text.Paragraph("Período: " + dataInicioTexto + " até " + dataFimTexto));
             document.add(com.lowagie.text.Chunk.NEWLINE);
 
-            // Tabela
+            
             com.lowagie.text.pdf.PdfPTable tabela = new com.lowagie.text.pdf.PdfPTable(5);
             tabela.setWidthPercentage(100);
             tabela.setSpacingBefore(10f);
             tabela.setSpacingAfter(10f);
 
-            // Cabeçalhos
+            
             String[] cabecalhos = {"Tipo", "Produto", "Quantidade", "Data", "Origem/Destino"};
             for (String col : cabecalhos) {
                 com.lowagie.text.pdf.PdfPCell cell = new com.lowagie.text.pdf.PdfPCell(new com.lowagie.text.Phrase(col));
@@ -264,7 +264,7 @@ public class Relatorios extends javax.swing.JPanel {
             document.add(tabela);
             document.close();
 
-            // Inserir no banco
+            
             StringBuilder resumo = new StringBuilder();
             resumo.append("Relatório de ").append(dataInicioTexto)
                   .append(" até ").append(dataFimTexto)
@@ -278,7 +278,7 @@ public class Relatorios extends javax.swing.JPanel {
 
             JOptionPane.showMessageDialog(null, "Relatório gerado com sucesso em: " + arquivoPDF.getAbsolutePath());
             carregarRelatorios();
-            // Abrir pasta no explorer
+            
             java.awt.Desktop.getDesktop().open(new File(documentsPath));
             
         }
@@ -296,7 +296,7 @@ private void carregarRelatorios() {
          ResultSet rs = stmt.executeQuery()) {
 
         javax.swing.table.DefaultTableModel modelo = (javax.swing.table.DefaultTableModel) tabelaRelatorios.getModel();
-        modelo.setRowCount(0); // Limpa
+        modelo.setRowCount(0);
 
         while (rs.next()) {
             int id = rs.getInt("Id_Relatorios");

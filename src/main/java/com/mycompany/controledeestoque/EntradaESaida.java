@@ -153,8 +153,8 @@ public class EntradaESaida extends javax.swing.JPanel {
         String acao = boxAcao.getSelectedItem().toString().trim();
         String fornecedorOuDestinatario = campoFornecedor.getText().trim();
 
-        // Conexão com o banco (ajuste para o nome da sua classe de conexão)
-        Connection conn = ConexaoBD.conectar(); // sua classe de conexão
+       
+        Connection conn = ConexaoBD.conectar(); 
         PreparedStatement stmt;
 
         if (acao.equalsIgnoreCase("Entrada")) {
@@ -176,7 +176,7 @@ public class EntradaESaida extends javax.swing.JPanel {
         stmt.executeUpdate();
         JOptionPane.showMessageDialog(this, "Registro realizado com sucesso!");
 
-        // Limpa campos após registrar
+       
         campoID.setText("");
         campoQtde.setText("");
         campoData.setText("");
@@ -190,13 +190,13 @@ public class EntradaESaida extends javax.swing.JPanel {
 
     
 private String converteData(String data) throws java.text.ParseException {
-    // Formato vindo do campo (ex: "08/06/2025")
+    
     java.text.SimpleDateFormat formatoEntrada = new java.text.SimpleDateFormat("dd/MM/yyyy");
 
-    // Converte para java.util.Date
+    
     java.util.Date dataUtil = formatoEntrada.parse(data);
 
-    // Converte para formato SQL: yyyy-MM-dd
+    
     java.text.SimpleDateFormat formatoSQL = new java.text.SimpleDateFormat("yyyy-MM-dd");
     return formatoSQL.format(dataUtil);
 }
